@@ -2,9 +2,7 @@
 //written by Ali Najafian
 //arduino 1.8.10
 //sucsess
-#ifndef __AVR__
-#error "this sketch only compatible with avr MCUs."
-#endif
+
 #include "PetitFS.h"
 #define TRIGGER1 215//it is very important number if you want to change the sample rate
 #define TRIGGER2 40//it is very important number if you want to change the sample rate
