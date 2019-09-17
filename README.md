@@ -6,6 +6,7 @@ before use this sketch add the included library to libreries folder...
 this sketch suppurts 8-bit 16KHz WAV file you can convet your file with this site
 ![alt text](http://uupload.ir/files/cld6_site.png)
 # block diagram
+you can also use Atmega8 the size of the code is small
 ![alt text](http://uupload.ir/files/gtd4_diagram.png)
 ______________________________________________________________________________
 i hope you enjoy that😎♾
