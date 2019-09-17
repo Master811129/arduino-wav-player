@@ -1,12 +1,14 @@
-// https://www.telegram.org/ArduinoKaraneJavan
+// https://t.me/ArduinoKaraneJavan
 //written by Ali Najafian
+//arduino 1.8.10
 //sucsess
-#include "PetitFS.h"
-#define TRIGGER1 230
-#define TRIGGER2 20
 #ifndef __AVR__
 #error "this sketch only compatible with avr MCUs."
 #endif
+#include "PetitFS.h"
+#define TRIGGER1 215//it is very important number if you want to change the sample rate
+#define TRIGGER2 40//it is very important number if you want to change the sample rate
+
 
 FATFS fs;     /* File system object */
 volatile uint16_t i = 0;
@@ -40,7 +42,7 @@ void beginSD()
   if (pf_mount(&fs)) errorHalt("pf_mount");
   else Serial.println(F("sucsess mount"));
   _delay_ms(1000);
-  if (pf_open("TITLE2.WAV")) errorHalt("pf_open");//WARNING: very important it MUST be an upper case string
+  if (pf_open("TITLE16.WAV")) errorHalt("pf_open");//WARNING: very important it MUST be an upper case string
   else Serial.println(F("sucsess open"));
 }
 
@@ -51,7 +53,7 @@ void setup()
   ASSR = 0 << AS2;   //disable the async timer 2 clock source
   TCCR2 = 0b00001010;//set timer 2 in CTC mode
   TCNT2 = 0x00;      //it is time 2 register. it automaticly counts up until it reach OCR2 value and it goes back to zero
-  OCR2 = 0xF9;       //this is our time 2 value you change it if you want to use lower quality wav file
+  OCR2 = 0x7C;       //this is our time 2 value you change it if you want to use lower quality wav file
   pinMode(9, OUTPUT);//very important if you want to use PWM
   //begin time 1 in fast PWM mode
   //in fact we use this timer as an software DAC.
@@ -104,7 +106,8 @@ void loop()
   }
   if (nr == 0)// if we don't have any data
   {
-    TCCR2 = 0;//dasable timer2 and timer 1
+    //dasable timer2 and timer 1
+    TCCR2 = 0;
     TCCR1A = 0;
     TCCR1B = 0;
   }
