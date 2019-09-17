@@ -1,0 +1,3 @@
+# arduino-wav-player
+an optimized way to play *.wav file with a small-flash arduino
+before use this sketch add the included library to libreries folder...
